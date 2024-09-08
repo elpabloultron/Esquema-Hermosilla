@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Diagrama del Caso Hermosilla (Zoom con Rueda)</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        #diagram-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: white;
+        }
+        #mermaid-diagram {
+            position: absolute;
+            transform-origin: center;
+            touch-action: none;
+        }
+        #info-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            font-size: 24px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #000;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        #zoom-level {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            font-size: 18px;
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+        #info-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+        }
+        #info-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="diagram-container">
+        <div id="mermaid-diagram">
+            <pre class="mermaid">
+            graph TD
+                subgraph Título["Mapa de Relaciones Caso Hermosilla V1.0 - 8 de septiembre 2024"]
+                end
+                
+                subgraph Caso Hermosilla/Audios
+                    A[Caso Audios] --> B[Principales Acusados]
+                    B --> C[Luis Hermosilla]
+                    C --> |Acusado de| D[Soborno]
+                    C --> |Acusado de| E[Lavado de activos]
+                    C --> |Acusado de| F[Delitos tributarios]
+                    B --> G[Hermanos Sauer]
+                    B --> H[Hermanos Jalaf]
+                    B --> I[Rodrigo Topelberg]
+                    B --> J[Leonarda Villalobos]
+                    K[Juan Pablo Hermosilla] --> |Abogado defensor| C
+                end
+
+                subgraph Caso SQM
+                    L[Caso SQM] --> M[Financiamiento ilegal de la política]
+                    L --> N[Michelle Bachelet]
+                    N --> |Investigación detenida durante su gobierno| L
+                    O[Servicio de Impuestos Internos] --> |Cambio de directivos| P[Detención de investigación]
+                    N --> O
+                    K --> |Asesor de| N
+                    K --> |Involucrado en| L
+                end
+
+                subgraph Caso PENTA
+                    Q[Caso PENTA] --> R[Financiamiento ilegal de la política]
+                    Q --> S[Carlos Alberto Délano]
+                    Q --> T[Carlos Eugenio Lavín]
+                    U[Manuel Guerra] --> |Fiscal del caso| Q
+                    V[Juicio abreviado] --> Q
+                end
+
+                subgraph Poder Judicial y Fiscalía
+                    W[Poder Judicial] --> X[Jueces Corte Suprema]
+                    W --> Y[Fiscales]
+
+                    X --> Z[Ángela Vivanco]
+                    X --> AA[María Teresa Letelier]
+                    X --> AB[Mario Carroza]
+                    X --> AC[Haroldo Brito]
+                    X --> AD[Jaime Matus]
+
+                    AE[Gonzalo Migueles] --> |Esposo de| Z
+                    AE --> |Implicado en| AF[Uso de información privilegiada]
+
+                    AD --> |Solicitó apoyo a| C
+                    AD --> |Postulación a Corte Suprema| AG[Controversia]
+
+                    Y --> AH[Sergio Muñoz]
+                    AH --> |Ex jefe PDI| AI[Filtración de información]
+
+                    Y --> U
+                    U --> |Ex fiscal| AJ[Tráfico de influencias]
+
+                    Y --> AK[Lorena Parra]
+                    AK --> |Fiscal actual| AL[Conflicto de interés]
+                    AK --> |Solicitó apoyo a| C
+
+                    AM[Ángel Valencia] --> |Fiscal Nacional| AN[Conexiones con Hermosilla]
+                end
+
+                subgraph Conexiones Políticas y Gobierno
+                    AO[Gobierno y Frente Amplio] --> AP[Gabriel Boric]
+                    AO --> AQ[Miguel Crispi]
+                    AQ --> |Jefe 2º piso| AP
+                    AQ --> |Contrató a| C
+
+                    AO --> AR[Frente Amplio]
+                    AR --> AS[Francisco Feres]
+                    AS --> |Abogado de| AT[Sebastián Dávalos]
+
+                    AU[Abogados de Topelberg] --> AV[Miguel Schürmann]
+                    AU --> AW[Alejandro Awad]
+                    AV --> |Conexión con| AR
+                    AW --> |Conexión con| AR
+                    AV --> |Representan a| AX[Irací Hassler]
+                    AW --> |Representan a| AY[Giorgio Jackson]
+
+                    AZ[Andrés Chadwick] --> |Conexiones con| C
+
+                    BA[Carolina Tohá] --> |Ex presidenta PPD| L
+                    BA --> |Ministra del Interior actual| AO
+                end
+
+                subgraph Sector Energético
+                    BB[German Chadwick] --> |Ex presidente hasta 2024| BC[Enel]
+                    BD[Nicolás Eyzaguirre] --> |Director| BE[CGE State Grid]
+                    BF[Controversia energética] --> BC
+                    BF --> BE
+                end
+
+                A -.-> AO
+                A -.-> W
+                L -.-> AO
+                L -.-> W
+                Q -.-> W
+                Q -.-> AO
+                A -.-> BB
+                A -.-> BD
+                
+                subgraph Créditos["Diagrama creado en conjunto con IA Claude 3.5 Sonnet, utilizando Mermaid, un proyecto de Pablo Benavides y la API de Anthropic, todos los derechos reservados. Más información en https://www.anthropic.com/claude"]
+                end
+            </pre>
+        </div>
+        <button id="info-button">i</button>
+        <div id="zoom-level">Zoom: 100%</div>
+    </div>
+    <div id="info-modal">
+        <div id="info-content">
+            <span class="close">&times;</span>
+            <h2>Instrucciones</h2>
+            <p>En PC: Use la rueda del ratón para hacer zoom. Haga clic y arrastre para mover el diagrama.</p>
+            <p>En dispositivos móviles: Use dos dedos para hacer zoom. Arrastre con un dedo para mover el diagrama. Doble toque para hacer zoom rápido.</p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'base',
+                themeVariables: {
+                    primaryColor: '#ffffff',
+                    primaryTextColor: '#000000',
+                    primaryBorderColor: '#000000',
+                    lineColor: '#000000',
+                    secondaryColor: '#f0f0f0',
+                    tertiaryColor: '#ffffff'
+                }
+            });
+
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            const diagram = document.getElementById('mermaid-diagram');
+            const container = document.getElementById('diagram-container');
+            const zoomLevelDisplay = document.getElementById('zoom-level');
+
+            function updateTransform() {
+                diagram.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+                zoomLevelDisplay.textContent = `Zoom: ${Math.round(scale * 100)}%`;
+            }
+
+            function centerDiagram() {
+                const rect = diagram.getBoundingClientRect();
+                posX = (container.clientWidth - rect.width * scale) / 2;
+                posY = (container.clientHeight - rect.height * scale) / 2;
+                updateTransform();
+            }
+
+            function changeZoom(delta, x, y) {
+                const oldScale = scale;
+                scale = Math.max(0.1, Math.min(20, scale * delta));
+                
+                // Ajustar la posición para que el punto bajo el cursor se mantenga en su lugar
+                if (x !== undefined && y !== undefined) {
+                    posX += (x - posX) * (1 - delta);
+                    posY += (y - posY) * (1 - delta);
+                }
+                
+                updateTransform();
+            }
+
+            // Zoom con rueda del ratón
+            container.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                const delta = e.deltaY < 0 ? 1.1 : 1/1.1;
+                changeZoom(delta, e.clientX, e.clientY);
+            });
+
+            const hammer = new Hammer(container);
+
+            hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+            hammer.get('pinch').set({ enable: true });
+            hammer.get('doubletap').set({ enable: true });
+
+            let lastScale = scale;
+            let startX = 0;
+            let startY = 0;
+
+            hammer.on('panstart', function(ev) {
+                startX = posX;
+                startY = posY;
+            });
+
+            hammer.on('pan', function(ev) {
+                posX = startX + ev.deltaX;
+                posY = startY + ev.deltaY;
+                updateTransform();
+            });
+
+            hammer.on('pinchstart', function(ev) {
+                lastScale = scale;
+            });
+
+            hammer.on('pinch', function(ev) {
+                scale = Math.max(0.1, Math.min(20, lastScale * ev.scale));
+                updateTransform();
+            });
+
+            hammer.on('pinchend', function(ev) {
+                lastScale = scale;
+            });
+
+            hammer.on('doubletap', function(ev) {
+                changeZoom(1.5, ev.center.x, ev.center.y);
+            });
+
+            // Prevenir el scroll del navegador en dispositivos móviles
+            document.body.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+
+            // Modal de información
+            const infoButton = document.getElementById('info-button');
+            const infoModal = document.getElementById('info-modal');
+            const closeButton = document.getElementsByClassName('close')[0];
+
+            infoButton.onclick = function() {
+                infoModal.style.display = "block";
+            }
+
+            closeButton.onclick = function() {
+                infoModal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == infoModal) {
+                    infoModal.style.display = "none";
+                }
+            }
+
+            // Centrar inicialmente el diagrama
+            centerDiagram();
+        });
+    </script>
+</body>
+</html>
